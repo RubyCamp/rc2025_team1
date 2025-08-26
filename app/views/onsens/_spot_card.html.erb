@@ -22,13 +22,19 @@
           <span class="text-xs text-gray-400">未評価</span>
         <% end %>
       </div>
-        <div class="text-xs text-gray-500 mb-2">
-      <% if onsen.pet.present? %>
-          <span class="font-medium">ペット✅</span> 
+      <div class="text-xs text-gray-500 mb-2">
+        <% if onsen.pet.present? %>
+          <span class="font-medium">ペット✅</span>
         <% else %>
-          <span class="font-medium">ペット☒</span> 
-      <% end %>
-        </div>
+          <span class="font-medium">ペット☒</span>
+        <% end %>
+        <% if onsen.style.present? %>
+          <div class="text-xs text-gray-500 mb-2">
+            <span class="font-medium">食事スタイル:</span>
+            <%= t("enums.style.#{onsen.style}") %>
+          </div>
+        <% end %>
+      </div>
     </div>
   </div>
 <% end %>

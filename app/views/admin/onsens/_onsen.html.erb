@@ -11,8 +11,10 @@
   <dd><%= onsen.tags %></dd>
   <dt class="font-semibold">ペット</dt>
   <%if onsen.pet%>
-  <dd>同伴可能</dd>
+    <dd>同伴可能</dd>
   <%else%>
-  <dd>同伴不可</dd>
+    <dd>同伴不可</dd>
   <% end %>
+  <dt class="font-semibold">食事スタイル</dt>
+  <dd><%= onsen.style.present? ? t("enums.style.#{onsen.style}") : "未設定" %></dd>
 </dl>

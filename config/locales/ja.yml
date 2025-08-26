@@ -15,6 +15,10 @@ ja:
         rating: 評価
         comment: コメント
         images: 画像
+  enums:
+    style:
+      japanese: "和食"
+      western: "洋食"
   errors:
     format: "%{attribute} %{message}"
     messages:

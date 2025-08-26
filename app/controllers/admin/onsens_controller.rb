@@ -65,6 +65,6 @@ class Admin::OnsensController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def onsen_params
-      params.expect(onsen: [ :name, :geo_lat, :geo_lng, :description, :tags, :pet, images: [] ])
+      params.expect(onsen: [ :name, :geo_lat, :geo_lng, :description, :tags, :pet, :style, images: [] ])
     end
 end
