@@ -25,7 +25,7 @@ class Admin::OnsensController < ApplicationController
 
     respond_to do |format|
       if @onsen.save
-        format.html { redirect_to admin_onsen_path(@onsen), notice: "Onsen was successfully created." }
+        format.html { redirect_to admin_onsen_path(@onsen), notice: "successfully created." }
         format.json { render :show, status: :created, location: @onsen }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -38,7 +38,7 @@ class Admin::OnsensController < ApplicationController
   def update
     respond_to do |format|
       if @onsen.update(onsen_params)
-        format.html { redirect_to admin_onsen_path(@onsen), notice: "Onsen was successfully updated." }
+        format.html { redirect_to admin_onsen_path(@onsen), notice: "successfully updated." }
         format.json { render :show, status: :ok, location: @onsen }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -52,7 +52,7 @@ class Admin::OnsensController < ApplicationController
     @onsen.destroy!
 
     respond_to do |format|
-      format.html { redirect_to admin_onsens_path, status: :see_other, notice: "Onsen was successfully destroyed." }
+      format.html { redirect_to admin_onsens_path, status: :see_other, notice: "successfully destroyed." }
       format.json { head :no_content }
     end
   end
