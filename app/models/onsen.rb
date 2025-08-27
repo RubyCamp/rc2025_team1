@@ -4,7 +4,7 @@ class Onsen < ApplicationRecord
   has_many_attached :images
 
   validates :name, presence: true
-
+  enum :style, { japanese: 0, western: 1 }
   validates :images,
   content_type: [ "image/jpeg", "image/png", "image/gif" ], # 許可ファイル形式
   size: { less_than: 5.megabytes },                       # 1枚あたり5MB未満
