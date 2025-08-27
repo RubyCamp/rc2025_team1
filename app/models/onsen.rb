@@ -17,6 +17,8 @@ class Onsen < ApplicationRecord
     scope = apply_text_search(scope, params[:q])
     scope = apply_tag_search(scope, params[:tags])
     scope = apply_location_search(scope, params)
+    scope = apply_pet_filter(scope, params[:pet])
+    scope = apply_style_filter(scope, params[:style])
     scope
   end
 
@@ -109,6 +111,23 @@ class Onsen < ApplicationRecord
   def self.apply_precise_distance_filter(scope, lat, lng, radius)
     scope.select do |onsen|
       DistanceCalculatorService.calculate(lat, lng, onsen.geo_lat, onsen.geo_lng) <= radius
+    end
+  end
+  # ペット可フィルタ
+  def self.apply_pet_filter(scope, pet_param)
+    return scope if pet_param.blank?
+
+    pet_value = ActiveModel::Type::Boolean.new.cast(pet_param)
+    scope.where(pet: pet_value)
+  end
+  # スタイルフィルタ
+  def self.apply_style_filter(scope, style_param)
+    return scope if style_param.blank?
+
+    if Onsen.styles.key?(style_param)
+      scope.where(style: Onsen.styles[style_param])
+    else
+      scope
     end
   end
 end
