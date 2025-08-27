@@ -11,7 +11,11 @@
     <div class="flex flex-col lg:flex-row lg:items-start lg:justify-between mb-6">
       <div class="flex-1">
         <h1 class="text-3xl font-bold text-gray-900 mb-2">
-          <%= @onsen.name %>
+          <% if @onsen.url.present? %>
+            <a href="<%= @onsen.url %>"><%= @onsen.name %></a>
+          <%else%>
+            <%= onsen.name %>
+          <% end %>
           <span class="text-gray-600 text-lg font-normal">
             （<%= @onsen.reviews.count %>件のレビュー）
           </span>
@@ -88,7 +92,7 @@
   </div>
 
   <div class="mt-6">
-    <%= link_to "温泉一覧に戻る", onsens_path, 
+    <%= link_to "店舗一覧に戻る", onsens_path, 
         class: "inline-flex items-center px-4 py-2 border border-gray-300 text-gray-700 rounded-md hover:bg-gray-50" %>
   </div>
 </div>

@@ -32,6 +32,10 @@
     <%= form.text_field :tags, class: "block shadow-sm rounded-md border px-3 py-2 w-full border-gray-300 focus:outline-blue-600" %>
   </div>
   <div>
+    <%= form.label :url, 'URL', class: 'block font-semibold mb-1' %>
+    <%= form.text_field :url, class: "block shadow-sm rounded-md border px-3 py-2 w-full border-gray-300 focus:outline-blue-600" %>
+  </div>
+  <div>
     <%= form.label :pet, 'ペット', class: 'block font-semibold mb-1' %>
     <%= form.check_box :pet %>
     <%= form.label :pet, "同伴可能" %>
