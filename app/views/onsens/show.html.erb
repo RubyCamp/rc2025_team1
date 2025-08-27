@@ -14,7 +14,7 @@
           <% if @onsen.url.present? %>
             <a href="<%= @onsen.url %>"><%= @onsen.name %></a>
           <%else%>
-            <%= onsen.name %>
+            <%= @onsen.name %>
           <% end %>
           <span class="text-gray-600 text-lg font-normal">
             （<%= @onsen.reviews.count %>件のレビュー）
