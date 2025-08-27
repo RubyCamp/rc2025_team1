@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_08_27_014039) do
+ActiveRecord::Schema[8.0].define(version: 2025_08_27_090838) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -51,12 +51,12 @@ ActiveRecord::Schema[8.0].define(version: 2025_08_27_014039) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "pet"
+    t.integer "foodstyle"
     t.integer "style"
+    t.text "url"
     t.string "weekday_hours"
     t.string "weekend_hours"
     t.string "holiday"
-    t.integer "foodstyle"
-    t.text "url"
   end
 
   create_table "reviews", force: :cascade do |t|
@@ -70,7 +70,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_08_27_014039) do
 
   create_table "users", force: :cascade do |t|
     t.string "name"
-    t.string "password"
+    t.string "password_digest"
     t.string "mail"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
