@@ -17,14 +17,23 @@ export default class extends Controller {
       attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
     }).addTo(this.map);
 
-    const onsenIcon = L.icon({
-      iconUrl: '/onsen.svg',
+    const wagasiIcon = L.icon({
+      iconUrl: '/japanese.svg',
+      iconSize: [32, 32],
+      iconAnchor: [16, 32],
+    });
+
+    const yogashiIcon = L.icon({
+      iconUrl: '/westan.svg',
       iconSize: [32, 32],
       iconAnchor: [16, 32],
     });
 
     this.onsens.forEach(onsen => {
-      L.marker([onsen.geo_lat, onsen.geo_lng], { icon: onsenIcon })
+      let mapIcon;
+      if(onsen.style=='japanese'){mapIcon=wagasiIcon}
+      else{mapIcon=yogashiIcon}
+      L.marker([onsen.geo_lat, onsen.geo_lng], { icon: mapIcon })
         .addTo(this.map)
         .bindPopup(onsen.name);
     });
