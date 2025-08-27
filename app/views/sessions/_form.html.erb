@@ -1,0 +1,14 @@
+<%= form_with(url: "create", scope: :session, html: { class: "space-y-6" }) do |form| %>
+  <div>
+    <%= form.label :mail, class: 'block font-semibold mb-1' %>
+    <%= form.email_field :mail, class: "block shadow-sm rounded-md border px-3 py-2 w-full border-gray-300 focus:outline-blue-600" %>
+  </div>
+  <div>
+    <%= form.label :password, class: 'block font-semibold mb-1' %>
+    <%= form.password_field :password, class: "block shadow-sm rounded-md border px-3 py-2 w-full border-gray-300 focus:outline-blue-600" %>
+    <%= form.password_field :password_confirmation, class: "block shadow-sm rounded-md border px-3 py-2 w-full border-gray-300 focus:outline-blue-600"  %>
+  </div>
+  <div class="flex flex-col sm:flex-row gap-2">
+    <%= form.submit class: "rounded-md px-4 py-2 bg-blue-600 hover:bg-blue-500 text-white font-semibold w-full sm:w-auto" %>
+  </div>
+<% end %>

@@ -13,7 +13,8 @@ module ApplicationHelper
   def public_navigation_links(current_path)
     create_navigation_link_set([
       { path: "/", label: t("views.navigation.search"), aria_label: "検索・地図", current_check: -> { current_path == "/" } },
-      { path: "/admin/onsens", label: t("views.navigation.admin"), aria_label: "管理画面", current_check: -> { false } }
+      { path: "/admin/onsens", label: t("views.navigation.admin"), aria_label: "管理画面", current_check: -> { false } },
+      { path: "/sessions/new", label: t("views.navigation.singup"), aria_label: "サインアップ", current_check: -> { current_path == "/sessions/new" } }
     ])
   end
 

@@ -29,6 +29,30 @@
     </div>
     <%# 位置情報検索セクション %>
     <%= render 'location_search_form', f: f %>
+    <%# ペット同伴可否フィルター %>
+    <div class="flex items-center space-x-2">
+      <label for="pet">ペット同伴</label>
+      <%= select_tag :pet,
+      options_for_select([
+        ['指定なし', ''],
+        ['可', 'true' ],
+        ['不可', 'false' ]
+      ], params[:pet]),
+      include_blank: false,
+      class: "h-8 px-2 border-gray-300 rounded" %>
+    </div>
+    <%# スタイルフィルター %>
+    <div class="flex items-center space-x-2">
+      <label for="style">ジャンル</label>
+      <%= select_tag :style,
+      options_for_select([
+        ['指定なし', ''],
+        ['和', 'japanese'],
+        ['洋', 'western']
+      ], params[:style]),
+      include_blank: false,
+      class: "h-8 px-2 border-gray-300 rounded" %>
+    </div>
     <%# 検索実行ボタン %>
     <div class="text-center pt-2">
       <%= f.submit t('views.onsens.index.search'),
