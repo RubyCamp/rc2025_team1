@@ -15,7 +15,7 @@
   <%else%>
     <dd>同伴不可</dd>
   <% end %>
-  <dt class="font-semibold">食事スタイル</dt>
+  <dt class="font-semibold">ジャンル</dt>
   <dd><%= onsen.style.present? ? t("enums.style.#{onsen.style}") : "未設定" %></dd>
   <dt class="font-semibold">URL</dt>
   <% if onsen.url.present? %>
