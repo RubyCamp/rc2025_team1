@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_08_26_122458) do
+ActiveRecord::Schema[8.0].define(version: 2025_08_27_010256) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -51,9 +51,9 @@ ActiveRecord::Schema[8.0].define(version: 2025_08_26_122458) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "pet"
-    t.integer "foodstale"
     t.integer "foodstyle"
     t.integer "style"
+    t.text "url"
   end
 
   create_table "reviews", force: :cascade do |t|
@@ -63,6 +63,14 @@ ActiveRecord::Schema[8.0].define(version: 2025_08_26_122458) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["onsen_id"], name: "index_reviews_on_onsen_id"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "name"
+    t.string "password"
+    t.string "mail"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
