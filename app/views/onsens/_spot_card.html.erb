@@ -34,6 +34,20 @@
             <%= t("enums.style.#{onsen.style}") %>
           </div>
         <% end %>
+        <% if onsen.weekday_hours.present? %>
+          <span class="font-medium">平日営業時間:</span>
+          <%= onsen.weekday_hours %>
+        <% end %>
+        <% if onsen.weekend_hours.present? %>
+          <div class="text-xs text-gray-500 mb-2">
+            <span class="font-medium">土日営業時間:</span>
+            <%= onsen.weekend_hours %>
+          </div>
+        <% end %>
+        <% if onsen.holiday.present? %>
+          <span class="font-medium">定休日:</span>
+          <%= onsen.holiday %>
+        <% end %>
       </div>
     </div>
   </div>
