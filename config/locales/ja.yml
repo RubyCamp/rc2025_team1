@@ -84,6 +84,9 @@ ja:
       search: 検索
       admin: 管理画面
       singup: サインアップ
+      destroy: ログアウト
+      profile: プロフィール
+      login: ログイン
       onsen_management: 店舗管理
       public_site: 公開サイト
     onsens:

@@ -2,6 +2,9 @@ Rails.application.routes.draw do
   get "sessions/new"
   post "sessions/create", as: "singup"
   get "sessions/destroy"
+  get "sessions/profile"
+  get "sessions/login"
+  post "sessions/check"
   resources :onsens, only: %i[ index show ] do
     resources :reviews, only: %i[ create new ]
   end

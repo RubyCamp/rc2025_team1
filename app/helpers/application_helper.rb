@@ -11,11 +11,21 @@ module ApplicationHelper
 
   # @return [Array<Hash>] 公開サイト用ナビゲーションリンク
   def public_navigation_links(current_path)
-    create_navigation_link_set([
-      { path: "/", label: t("views.navigation.search"), aria_label: "検索・地図", current_check: -> { current_path == "/" } },
-      { path: "/admin/onsens", label: t("views.navigation.admin"), aria_label: "管理画面", current_check: -> { false } },
-      { path: "/sessions/new", label: t("views.navigation.singup"), aria_label: "サインアップ", current_check: -> { current_path == "/sessions/new" } }
-    ])
+    if logged_in?
+      create_navigation_link_set([
+        { path: "/", label: t("views.navigation.search"), aria_label: "検索・地図", current_check: -> { current_path == "/" } },
+        { path: "/admin/onsens", label: t("views.navigation.admin"), aria_label: "管理画面", current_check: -> { false } },
+        { path: "/sessions/profile", label: t("views.navigation.profile"), aria_label: "サインアップ", current_check: -> { current_path == "/sessions/new" } },
+        { path: "/sessions/destroy", label: t("views.navigation.destroy"), aria_label: "プロフィール", current_check: -> { current_path == "/sessions/profile" } }
+      ])
+    else
+      create_navigation_link_set([
+        { path: "/", label: t("views.navigation.search"), aria_label: "検索・地図", current_check: -> { current_path == "/" } },
+        { path: "/admin/onsens", label: t("views.navigation.admin"), aria_label: "管理画面", current_check: -> { false } },
+        { path: "/sessions/login", label: t("views.navigation.login"), aria_label: "ログイン", current_check: -> { current_path == "/sessions/login" } },
+        { path: "/sessions/new", label: t("views.navigation.singup"), aria_label: "サインアップ", current_check: -> { current_path == "/sessions/new" } }
+      ])
+    end
   end
 
   # @return [Array<Hash>] 管理サイト用ナビゲーションリンク
