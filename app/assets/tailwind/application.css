@@ -1,1 +1,29 @@
 @import "tailwindcss";
+
+.hover-link {
+  /* 通常の状態のスタイル */
+  color: blue;
+  text-decoration: underline; /* 下線を表示にする */
+  font-weight: normal;
+}
+
+.hover-link:hover {
+  /* マウスカーソルが重なった時のスタイル */
+  color: #ff002bb8;
+  text-decoration: underline; /* 下線を表示する */
+  font-weight: bold;
+}
+
+.hover-link-admin {
+  /* 通常の状態のスタイル */
+  color: blue;
+  text-decoration: underline; /* 下線を表示にする */
+  font-weight: normal;
+}
+
+.hover-link-admin:hover {
+  /* マウスカーソルが重なった時のスタイル */
+  color: #ff002bb8;
+  text-decoration: underline; /* 下線を表示する */
+  font-weight: nomal;
+}
