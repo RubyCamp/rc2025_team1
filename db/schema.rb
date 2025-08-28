@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_08_28_012733) do
+ActiveRecord::Schema[8.0].define(version: 2025_08_28_044808) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -51,6 +51,14 @@ ActiveRecord::Schema[8.0].define(version: 2025_08_28_012733) do
     t.index ["user_id"], name: "index_favorites_on_user_id"
   end
 
+  create_table "inquiries", force: :cascade do |t|
+    t.string "name"
+    t.string "email"
+    t.text "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "onsens", force: :cascade do |t|
     t.string "name"
     t.decimal "geo_lat"
@@ -85,7 +93,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_08_28_012733) do
     t.string "mail"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "favorite"
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
