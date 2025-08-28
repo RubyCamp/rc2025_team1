@@ -53,6 +53,33 @@
       include_blank: false,
       class: "h-8 px-2 border-gray-300 rounded" %>
     </div>
+    <%# 営業時間検索%>
+    <div>
+      <label for="search_time">営業時間</label>
+      <% if params[:search_time].present? %>
+        <p>指定された時間: <%= params[:search_time] %></p>
+      <% else %>
+        <p>指定なし</p>
+      <% end %>
+      <%= time_field_tag :search_time %>
+    </div>
+    <%# 営業曜日検索%>
+    <div class="flex items-center space-x-2">
+      <label for="open_day">営業曜日</label>
+      <%= select_tag :open_day,
+      options_for_select([
+        ['指定なし', ''],
+        ['月', '月'],
+        ['火', '火'],
+        ['水', '水'],
+        ['木', '木'],
+        ['金', '金'],
+        ['土', '土'],
+        ['日', '日']
+      ], params[:open_day]),
+      include_blank: false,
+      class: "h-8 px-2 border-gray-300 rounded" %>
+    </div>
     <%# 検索実行ボタン %>
     <div class="text-center pt-2">
       <%= f.submit t('views.onsens.index.search'),
