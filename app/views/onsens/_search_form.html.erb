@@ -101,6 +101,9 @@
         document.getElementById('open_day').value = dayString;
       }
     </script>
+    <%# 駐車場フィルタ%>
+    <%= label :parking, "駐車場あり" %>
+    <%= check_box_tag :parking, "1", params[:parking] == "1" %>
     <%# 検索実行ボタン %>
     <div class="text-center pt-2">
       <%= f.submit t('views.onsens.index.search'),
