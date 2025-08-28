@@ -89,6 +89,7 @@ ja:
       login: ログイン
       onsen_management: 店舗管理
       public_site: 公開サイト
+      inquiry_content: 問い合わせ内容
     onsens:
     onsens:
       index:
@@ -107,6 +108,8 @@ ja:
     reviews:
       form:
         submit: レビュー投稿
+    inquiry:
+      title: "お問い合わせページ"
   admin:
     onsens:
       create:
