@@ -2,9 +2,11 @@ Rails.application.routes.draw do
   get "sessions/new"
   post "sessions/create", as: "singup"
   get "sessions/destroy"
-  get "sessions/profile"
-  get "sessions/login"
+  get "sessions/profile", to: "sessions#profile", as: "profile"
+  get "sessions/login", to: "sessions#login", as: "login"
   post "sessions/check"
+  get "sessions/edit/:id", to: "sessions#edit", as: "edit"
+  post "sessions/edit/change", to: "sessions#change"
   resources :onsens, only: %i[ index show ] do
     resources :reviews, only: %i[ create new ]
   end
