@@ -49,6 +49,7 @@ class Onsen < ApplicationRecord
     scope = apply_style_filter(scope, params[:style])
     scope = apply_serach_time_filter(scope, params[:search_time], params[:open_day])
     scope = apply_OpenDay_search(scope, params[:open_day])
+    scope = apply_parking_filter(scope, params[:parking])
     scope
   end
 
@@ -192,5 +193,10 @@ class Onsen < ApplicationRecord
   def self.apply_OpenDay_search(scope, open_day_param)
     return scope if open_day_param.blank?
     scope.where.not("holiday LIKE ?", "%#{open_day_param}%")
+  end
+  # 駐車場フィルタ
+  def self.apply_parking_filter(scope, parking_param)
+    return scope if parking_param.blank?
+    scope.where.not(parking: nil).where("parking > 0")
   end
 end
