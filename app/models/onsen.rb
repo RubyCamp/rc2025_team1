@@ -9,7 +9,35 @@ class Onsen < ApplicationRecord
   content_type: [ "image/jpeg", "image/png", "image/gif" ], # 許可ファイル形式
   size: { less_than: 5.megabytes },                       # 1枚あたり5MB未満
   limit: { max: 5 }                                     # 最大3枚まで
+  serialize :holiday, type: Array, coder: JSON
+  after_initialize do
+    self.holiday ||= []
+  end
+  attr_accessor :weekday_open_time, :weekday_close_time, :weekend_open_time, :weekend_close_time
+  before_validation :combine_weekday_hours
 
+  private
+
+  def combine_weekday_hours
+    return if weekday_open_time.blank? && weekday_close_time.blank?
+    if weekday_open_time.blank? || weekday_close_time.blank?
+      errors.add(:base, "平日営業時間は両方入力してください")
+      return
+    end
+    # フォーマット調整（例: "09:00 - 18:00"）
+    self.weekday_hours = "#{weekday_open_time.strip} - #{weekday_close_time.strip}"
+  end
+  before_validation :combine_weekend_hours
+
+  private
+  def combine_weekend_hours
+    return if weekend_open_time.blank? && weekend_close_time.blank?
+    if weekend_open_time.blank? || weekend_close_time.blank?
+      errors.add(:base, "土日営業時間は両方入力してください")
+      return
+    end
+    self.weekend_hours = "#{weekend_open_time.strip} - #{weekend_close_time.strip}"
+  end
 
   # @example Onsen.search(q: "玉造", tags: "露天風呂", lat: 35.1, lng: 132.5, radius_km: 10)
   def self.search(params)
@@ -19,6 +47,8 @@ class Onsen < ApplicationRecord
     scope = apply_location_search(scope, params)
     scope = apply_pet_filter(scope, params[:pet])
     scope = apply_style_filter(scope, params[:style])
+    scope = apply_serach_time_filter(scope, params[:search_time], params[:open_day])
+    scope = apply_OpenDay_search(scope, params[:open_day])
     scope
   end
 
@@ -129,5 +159,38 @@ class Onsen < ApplicationRecord
     else
       scope
     end
+  end
+  # 営業時間フィルタ
+  def self.apply_serach_time_filter(scope, search_time_param, open_day_param)
+    return scope if search_time_param.blank?
+    search_time = Time.parse(search_time_param)
+    if open_day_param.blank?
+      scope.where("CAST(? AS time) BETWEEN CAST(split_part(weekend_hours, '-', 1) AS time)
+                          AND CAST(split_part(weekend_hours, '-', 2) AS time)
+                          OR
+                          CAST(? AS time) BETWEEN CAST(split_part(weekday_hours, '-', 1) AS time)
+                          AND CAST(split_part(weekday_hours, '-', 2) AS time)",
+      search_time, search_time
+      )
+    else
+      if open_day_param=="土"||open_day_param=="日"
+        scope.where(
+        "CAST(? AS time) BETWEEN CAST(split_part(weekend_hours, '-', 1) AS time)
+                            AND CAST(split_part(weekend_hours, '-', 2) AS time)",
+        search_time
+      )
+      else
+        scope.where(
+        "CAST(? AS time) BETWEEN CAST(split_part(weekday_hours, '-', 1) AS time)
+                            AND CAST(split_part(weekday_hours, '-', 2) AS time)",
+        search_time
+      )
+      end
+    end
+  end
+  # 営業日フィルタ
+  def self.apply_OpenDay_search(scope, open_day_param)
+    return scope if open_day_param.blank?
+    scope.where.not("holiday LIKE ?", "%#{open_day_param}%")
   end
 end

@@ -8,6 +8,7 @@ class Admin::OnsensController < ApplicationController
 
   # GET /onsens/1 or /onsens/1.json
   def show
+  @onsen = Onsen.find(params[:id])
   end
 
   # GET /onsens/new
@@ -65,6 +66,6 @@ class Admin::OnsensController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def onsen_params
-      params.expect(onsen: [ :name, :geo_lat, :geo_lng, :description, :tags, :pet, :style, :url, :weekday_hours, :weekend_hours, :holiday, images: [] ])
+      params.expect(onsen: [ :name, :geo_lat, :geo_lng, :description, :tags, :pet, :style, :url, :weekday_hours, :weekday_open_time, :weekday_close_time, :weekend_hours, :weekend_open_time, :weekend_close_time, :holiday, holiday: [], images: [] ])
     end
 end

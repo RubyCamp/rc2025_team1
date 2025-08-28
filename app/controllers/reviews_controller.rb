@@ -1,11 +1,16 @@
 class ReviewsController < ApplicationController
-  before_action :set_onsen
+  before_action :set_onsen,
   def new
     @review = @onsen.reviews.build
   end
 
   def create
-    @review = @onsen.reviews.build(review_params)
+    @user = current_user
+    # user_idをparamsにマージする
+    review_attributes = review_params.merge(userid: @user.id)
+
+    # buildメソッドに1つのハッシュを渡す
+    @review = @onsen.reviews.build(review_attributes)
     if @review.save
       redirect_to onsen_path(@onsen), notice: t("flash.review_created")
     else

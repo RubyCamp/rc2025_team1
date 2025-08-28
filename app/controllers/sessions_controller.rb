@@ -29,6 +29,19 @@ class SessionsController < ApplicationController
     @current_user = current_user
   end
 
+  def edit
+    @user = current_user
+  end
+
+  def change
+    @user = current_user
+
+    @user.name = params[:name]
+    @user.save
+
+    redirect_to profile_path(@user)
+  end
+
   def login
   end
 
