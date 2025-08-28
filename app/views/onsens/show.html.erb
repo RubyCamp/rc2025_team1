@@ -29,8 +29,13 @@
         <% end %>
       </div>
       <div class="flex flex-col sm:flex-row gap-3 mt-4 lg:mt-0">
-        <%= link_to "レビューを投稿", new_onsen_review_path(@onsen), 
-            class: "inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700" %>
+        <% if logged_in? %>
+          <%= link_to "レビューを投稿", new_onsen_review_path(@onsen), 
+              class: "inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700" %>
+        <% else %>
+          <%= link_to "レビューを投稿", login_path, 
+              class: "inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700" %>
+        <% end %>
       </div>
     </div>
     <% if @onsen.images.attached? %>
@@ -75,8 +80,13 @@
           <p class="text-lg">まだレビューが投稿されていません</p>
           <p class="text-sm mt-2">最初のレビューを投稿してみませんか？</p>
           <div class="mt-4">
-            <%= link_to "最初のレビューを投稿", new_onsen_review_path(@onsen), 
+            <% if logged_in? %>
+              <%= link_to "最初のレビューを投稿", new_onsen_review_path(@onsen), 
                 class: "inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700" %>
+            <% else %>
+              <%= link_to "最初のレビューを投稿", login_path, 
+                class: "inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700" %>
+            <% end %>
           </div>
         </div>
       <% end %>
