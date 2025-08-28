@@ -24,10 +24,13 @@
   <dt class="font-semibold">定休日</dt>
   <dd><%= onsen.holiday.any? ? onsen.holiday.join(", ") : "未設定" %></dd>
   <dt class="font-semibold">駐車場</dt>
-  <% if onsen.parking.present? && onsen.parking >= 0 %>
-    <%= "#{onsen.parking}台" %>
-  <% else %>
+  <% case onsen.parking %>
+  <% when nil %>
     未設定
+  <% when 0 %>
+    なし
+  <% else %>
+    <%= "#{onsen.parking}台" %>
   <% end %>
   <dt class="font-semibold">URL</dt>
   <% if onsen.url.present? %>
