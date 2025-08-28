@@ -3,7 +3,7 @@ class OnsensController < ApplicationController
   # GET /onsens or /onsens.json
   def index
     # Strong Parametersで安全なパラメータのみ許可
-    @search_params = params.permit(:q, :tags, :pet, :style, :search_time, :open_day)
+    @search_params = params.permit(:q, :tags, :pet, :style, :search_time, :open_day, :parking)
     # モデルの検索メソッドを呼び出し、新しい順でソート
     @onsens = Onsen.search(@search_params).order(created_at: :desc)
   end
