@@ -1,5 +1,6 @@
 <%= form_with(url: "create", scope: :session, html: { class: "space-y-6" }) do |form| %>
-<div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-md mt-3">
+  <% if @user.errors.any? %>
+    <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-md mt-3">
       <h2><%= pluralize(@user.errors.count, "件のエラー") %>があります:</h2>
       <ul class="list-disc ml-6">
         <% @user.errors.each do |error| %>
@@ -7,6 +8,7 @@
         <% end %>
       </ul>
     </div>
+  <% end %>
   <div>
     <%= form.label :mail, class: 'block font-semibold mb-1' %>
     <%= form.email_field :mail, class: "block shadow-sm rounded-md border px-3 py-2 w-full border-gray-300 focus:outline-blue-600" %>
