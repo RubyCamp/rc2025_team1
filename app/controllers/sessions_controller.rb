@@ -36,8 +36,8 @@ class SessionsController < ApplicationController
   def change
     @user = current_user
 
-    @user.name = params[:name]
-    @user.save
+    @user.name = user_params[:name]
+    @user.save(validate: false)
 
     redirect_to profile_path(@user)
   end
@@ -64,6 +64,6 @@ class SessionsController < ApplicationController
   # Strong Parametersを定義するプライベートメソッド
   def user_params
     # :userキーを必須とし、その中から :email, :password のみを許可する
-    params.require(:session).permit(:mail, :password, :password_confirmation)
+    params.require(:session).permit(:name, :mail, :password, :password_confirmation)
   end
 end
