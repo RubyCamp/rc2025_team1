@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get "check", to: "check#inquiry"
     get "inquiry", to: "inquiry#inquiry"
   post "inquiry", to: "inquiry#inquiry"
   get "sessions/new"

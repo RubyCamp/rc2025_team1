@@ -32,7 +32,8 @@ module ApplicationHelper
   def admin_navigation_links(current_path)
     create_navigation_link_set([
       { path: "/admin/onsens", label: t("views.navigation.onsen_management"), aria_label: "温泉管理", current_check: -> { current_path.start_with?("/admin/onsens") } },
-      { path: "/", label: t("views.navigation.public_site"), aria_label: "公開サイト", current_check: -> { false } }
+      { path: "/", label: t("views.navigation.public_site"), aria_label: "公開サイト", current_check: -> { false } },
+      { path: "/check", label: t("views.navigation.inquiry_content"), aria_label: "問い合わせ内容", current_check: -> { false } }
     ])
   end
 
