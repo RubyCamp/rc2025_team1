@@ -46,18 +46,49 @@
     <%= form.label :style_japanese, "和" %>
     <%= form.radio_button :style, "western", class: "ml-4" %>
     <%= form.label :style_western, "洋" %>
+    <%= form.radio_button :style, "", class: "ml-4" %>
+    <%= form.label :style_western, "設定なし" %>
+  </div>
+  <div class="mb-4">
+    <label class="block font-semibold mb-1">平日営業時間</label>
+    <%= @onsen.weekday_hours %>
+    <p class="text-sm text-gray-500 mb-2">※変更がある場合のみ入力してください</p>
+    <div class="flex items-center space-x-4">
+      <div>
+        <%= form.label :weekday_open_time, "開店:" %>
+        <%= form.time_field :weekday_open_time %>
+      </div>
+      <div>
+        <%= form.label :weekday_close_time, "閉店:" %>
+        <%= form.time_field :weekday_close_time %>
+      </div>
+    </div>
+  </div>
+  <div class="mb-4">
+    <label class="block font-semibold mb-1">土日営業時間</label>
+    <%= @onsen.weekend_hours %>
+    <p class="text-sm text-gray-500 mb-2">※変更がある場合のみ入力してください</p>
+    <div class="flex items-center space-x-4">
+      <div>
+        <%= form.label :weekend_open_time, "開店:" %>
+        <%= form.time_field :weekend_open_time %>
+      </div>
+      <div>
+        <%= form.label :weekend_close_time, "閉店:" %>
+        <%= form.time_field :weekend_close_time %>
+      </div>
+    </div>
   </div>
   <div>
-    <%= form.label :weekday_hours, "平日営業時間" %>
-    <%= form.text_field :weekday_hours, class: "block shadow-sm rounded-md border px-3 py-2 w-full border-gray-300 focus:outline-blue-600" %>
-  </div>
-  <div>
-    <%= form.label :weekend_hours, "土日営業時間" %>
-    <%= form.text_field :weekend_hours, class: "block shadow-sm rounded-md border px-3 py-2 w-full border-gray-300 focus:outline-blue-600" %>
-  </div>
-  <div>
-    <%= form.label :holiday, "定休日" %>
-    <%= form.text_field :holiday, class: "block shadow-sm rounded-md border px-3 py-2 w-full border-gray-300 focus:outline-blue-600" %>
+    <%= form.label :holiday, "定休日" %><br>
+    <% holidays = ['月','火','水','木','金','土','日'] %>
+    <% holidays.each do |holiday| %>
+      <%= check_box_tag 'onsen[holiday][]',
+        holiday,
+        @onsen.holiday.include?(holiday),
+        id: "holiday_#{holiday}" %>
+      <%= holiday %><br>
+    <% end %>
   </div>
   <div>
     <%= form.label :parking, "駐車場" %>
