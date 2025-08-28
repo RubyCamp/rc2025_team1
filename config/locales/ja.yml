@@ -107,6 +107,8 @@ ja:
     reviews:
       form:
         submit: レビュー投稿
+    inquiry:
+      title: "お問い合わせページ"
   admin:
     onsens:
       create:

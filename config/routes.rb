@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+    get "inquiry", to: "inquiry#inquiry"
+  post "inquiry", to: "inquiry#inquiry"
   get "sessions/new"
   post "sessions/create", as: "singup"
   get "sessions/destroy"
