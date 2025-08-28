@@ -29,44 +29,47 @@
     </div>
     <%# 位置情報検索セクション %>
     <%= render 'location_search_form', f: f %>
-    <%# ペット同伴可否フィルター %>
-    <div class="flex items-center space-x-2">
-      <label for="pet">ペット同伴</label>
-      <%= select_tag :pet,
+    <div class="flex items-center space-x-6">
+      <%# ペット同伴可否フィルター %>
+      <div class="flex items-center space-x-2">
+        <label for="pet" class="text-sm font-semibold text-gray-800">ペット同伴</label>
+        <%= select_tag :pet,
       options_for_select([
         ['指定なし', ''],
         ['可', 'true' ],
         ['不可', 'false' ]
       ], params[:pet]),
       include_blank: false,
-      class: "h-8 px-2 border-gray-300 rounded" %>
-    </div>
-    <%# スタイルフィルター %>
-    <div class="flex items-center space-x-2">
-      <label for="style">ジャンル</label>
-      <%= select_tag :style,
+      class: "text-sm h-8 px-2 border-gray-300 rounded" %>
+      </div>
+      <%# スタイルフィルター %>
+      <div class="flex items-center space-x-2">
+        <label for="style" class="text-sm font-semibold text-gray-800">ジャンル</label>
+        <%= select_tag :style,
       options_for_select([
         ['指定なし', ''],
         ['和', 'japanese'],
         ['洋', 'western']
       ], params[:style]),
       include_blank: false,
-      class: "h-8 px-2 border-gray-300 rounded" %>
+      class: "text-sm h-8 px-2 border-gray-300 rounded" %>
+      </div>
     </div>
-    <%# 営業時間検索%>
-    <div>
-      <label for="search_time">営業時間</label>
-      <% if params[:search_time].present? %>
-        <p>指定された時間: <%= params[:search_time] %></p>
-      <% else %>
-        <p>指定なし</p>
-      <% end %>
-      <%= time_field_tag :search_time %>
-    </div>
-    <%# 営業曜日検索%>
-    <div class="flex items-center space-x-2">
-      <label for="open_day">営業曜日</label>
-      <%= select_tag :open_day,
+    <div class="flex items-center space-x-6">
+      <%# 営業時間検索%>
+      <label for="search_time" class="text-sm font-semibold text-gray-800">営業時間</label>
+      <div class="text-sm">
+        <% if params[:search_time].present? %>
+          指定された時間: <%= params[:search_time] %>
+        <% else %>
+          指定なし
+        <% end %>
+      </div>
+      <%= time_field_tag :search_time, id: "search_time" %>
+      <%# 営業曜日検索%>
+      <div class="flex items-center space-x-2">
+        <label for="open_day" class="text-sm font-semibold text-gray-800">営業曜日</label>
+        <%= select_tag :open_day,
       options_for_select([
         ['指定なし', ''],
         ['月', '月'],
@@ -77,9 +80,27 @@
         ['土', '土'],
         ['日', '日']
       ], params[:open_day]),
-      include_blank: false,
-      class: "h-8 px-2 border-gray-300 rounded" %>
+      include_blank: false, id: "open_day",
+      class: "text-sm h-8 px-2 border-gray-300 rounded" %>
+      </div>
+      <button type="button" onclick="setCurrentTimeAndDay()" class=" text-sm bg-gray-300 text-gray-800 px-3 py-1 rounded hover:bg-gray-400 focus:ring-2 focus:ring-gray-500 focus:ring-offset-2">
+        現在の時間と曜日を設定
+      </button>
     </div>
+    <script>
+      function setCurrentTimeAndDay() {
+        const now = new Date();
+        const hours = String(now.getHours()).padStart(2, '0');
+        const minutes = String(now.getMinutes()).padStart(2, '0');
+        const timeString = `${hours}:${minutes}`;
+
+        const days = ['日', '月', '火', '水', '木', '金', '土'];
+        const dayString = days[now.getDay()];
+
+        document.getElementById('search_time').value = timeString;
+        document.getElementById('open_day').value = dayString;
+      }
+    </script>
     <%# 検索実行ボタン %>
     <div class="text-center pt-2">
       <%= f.submit t('views.onsens.index.search'),
