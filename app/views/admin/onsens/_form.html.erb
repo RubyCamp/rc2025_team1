@@ -48,16 +48,20 @@
     <%= form.label :style_western, "洋" %>
   </div>
   <div>
-  <%= form.label :weekday_hours, "平日営業時間" %>
-  <%= form.text_field :weekday_hours, class: "block shadow-sm rounded-md border px-3 py-2 w-full border-gray-300 focus:outline-blue-600" %>
+    <%= form.label :weekday_hours, "平日営業時間" %>
+    <%= form.text_field :weekday_hours, class: "block shadow-sm rounded-md border px-3 py-2 w-full border-gray-300 focus:outline-blue-600" %>
   </div>
   <div>
-  <%= form.label :weekend_hours, "土日営業時間" %>
-  <%= form.text_field :weekend_hours, class: "block shadow-sm rounded-md border px-3 py-2 w-full border-gray-300 focus:outline-blue-600" %>
+    <%= form.label :weekend_hours, "土日営業時間" %>
+    <%= form.text_field :weekend_hours, class: "block shadow-sm rounded-md border px-3 py-2 w-full border-gray-300 focus:outline-blue-600" %>
   </div>
   <div>
-  <%= form.label :holiday, "定休日" %>
-  <%= form.text_field :holiday, class: "block shadow-sm rounded-md border px-3 py-2 w-full border-gray-300 focus:outline-blue-600" %>
+    <%= form.label :holiday, "定休日" %>
+    <%= form.text_field :holiday, class: "block shadow-sm rounded-md border px-3 py-2 w-full border-gray-300 focus:outline-blue-600" %>
+  </div>
+  <div>
+    <%= form.label :parking, "駐車場" %>
+    <%= form.text_field :parking, class: "block shadow-sm rounded-md border px-3 py-2 w-full border-gray-300 focus:outline-blue-600" %>
   </div>
   <div>
     <%= form.label :images, '画像（最大5枚・JPEG/PNG/GIF）', class: 'block font-semibold mb-1' %>

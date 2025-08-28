@@ -23,8 +23,10 @@
   <dd><%= onsen.weekend_hours.present? ? onsen.weekend_hours : "未設定" %></dd>
   <dt class="font-semibold">定休日</dt>
   <dd><%= onsen.holiday.present? ? onsen.holiday : "未設定" %></dd>
+  <dt class="font-semibold">駐車場</dt>
+  <dd><%= onsen.parking.present? ? onsen.parking : "なし" %></dd>
   <dt class="font-semibold">URL</dt>
   <% if onsen.url.present? %>
-  <dd><a href="<%= onsen.url %>" class="hover-link-admin"><%= onsen.url %></a></dd>
-<% end %>
+    <dd><a href="<%= onsen.url %>" class="hover-link-admin"><%= onsen.url %></a></dd>
+  <% end %>
 </dl>
