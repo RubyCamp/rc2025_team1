@@ -192,7 +192,7 @@ class Onsen < ApplicationRecord
   # 営業日フィルタ
   def self.apply_OpenDay_search(scope, open_day_param)
     return scope if open_day_param.blank?
-    scope.where.not("holiday LIKE ?", "%#{open_day_param}%")
+    scope.where("holiday IS NULL OR holiday = '' OR holiday NOT LIKE ?", "%#{open_day_param}%")
   end
   # 駐車場フィルタ
   def self.apply_parking_filter(scope, parking_param)
